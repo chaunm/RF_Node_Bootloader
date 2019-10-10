@@ -5,15 +5,14 @@
 define symbol __ICFEDIT_intvec_start__ = 0x08000000;
 /*-Memory Regions-*/
 define symbol __ICFEDIT_region_ROM_start__ = 0x08000000;
-define symbol __ICFEDIT_region_ROM_end__   = 0x08000FFF;
+define symbol __ICFEDIT_region_ROM_end__   = 0x080007FF;
 define symbol __ICFEDIT_region_RAM_start__ = 0x20000000;
-define symbol __ICFEDIT_region_RAM_end__   = 0x20007FFF;
-define symbol m_image_start			= 0x08001000;
-define symbol m_image_end			= 0x0801FFFF;
-
+define symbol __ICFEDIT_region_RAM_end__   = 0x20000FFF;
+define symbol m_image_start			= 0x08000800;
+define symbol m_image_end			= 0x08003FFF;
 /*-Sizes-*/
-define symbol __ICFEDIT_size_cstack__ = 0x1000;
-define symbol __ICFEDIT_size_heap__   = 0x2000;
+define symbol __ICFEDIT_size_cstack__ = 0x400;
+define symbol __ICFEDIT_size_heap__   = 0x400;
 /**** End of ICF editor section. ###ICF###*/
 
 define memory mem with size = 4G;
@@ -34,10 +33,8 @@ place at address mem:__ICFEDIT_intvec_start__ { readonly section .intvec };
 place in ROM_region   { readonly };
 place in RAM_region   { readwrite,
                         block CSTACK, block HEAP };
-
+						
 place in IMAGE_region	{ section IMAGE };
 
 export symbol __ICFEDIT_region_RAM_start__;
 export symbol __ICFEDIT_region_RAM_end__;
-
-

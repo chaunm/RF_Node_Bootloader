@@ -289,3 +289,14 @@ INTERNAL VOID SysTickConfig (VOID)
 {
     while (SysTick_Config(SystemCoreClock / 1000));
 }
+
+VOID CopyMemory(PBYTE pDest, PBYTE pSource, WORD nSize)
+{
+	int i = 0;
+	while (nSize)
+	{
+		pDest[i] = pSource[i];
+		i++;
+		nSize--;
+	}
+}
